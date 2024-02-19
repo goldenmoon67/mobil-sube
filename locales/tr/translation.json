@@ -1,0 +1,9 @@
+{
+    "email-already-exists":"Bu mail adresi zaten kayıtlı",
+    "bearer-token-is-not-auth":"Lütfen oturum açınız",
+    "validation-faild":"Doğrulama başarısız oldu",
+    "unable-to-registered":"Kayıt yapılamıyor.",
+    "enter-a-valid-email": "Lütfen Geçerli bir e posta giriniz. E posta zorunludur"
+
+
+}
