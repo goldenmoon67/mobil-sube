@@ -10,7 +10,7 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
-    walletId: {
+    wallet: {
         type: mongoose.Types.ObjectId,
         ref: 'Wallet'
     },
@@ -30,5 +30,7 @@ function validateUser(user) {
     })
     return schema.validate(user)
 }
-module.exports.validate = validateUser;
-module.exports.User = mongoose.model('User', dataSchema);
+module.exports = {
+    User: mongoose.model('User', dataSchema),
+    validateUser
+};

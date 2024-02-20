@@ -1,13 +1,17 @@
-const {User} =require('../../models/user/user');
+const { User } = require('../../models/user/user');
 const mongoose = require('mongoose');
 
 exports.findUserById = async (_id) => {
-    const user = await User.findOne({
-        _id,
-    });
-    if (!user) {
-        return false;
-    }
+    const user = await User.findOne({ _id })
+        .populate({
+            path: 'wallet',
+            select:
+                'iban balance transactions owner',
+            populate: {
+                path: 'transactions',
+                select: 'date amount description'
+            },
+        });
     return user;
 };
 
@@ -18,14 +22,13 @@ exports.findUserByEmail = async (email) => {
     if (!user) {
         return false;
     }
-    this.addWallet(user.id,)
     return user;
 };
 
-exports.addWallet = async (_id,walletId) => {
-    const user = await User.findByIdAndUpdate ({
+exports.addWallet = async (_id, walletId) => {
+    const user = await User.findByIdAndUpdate({
         _id,
-    },{walletId:new mongoose.Types.ObjectId(walletId)});
+    }, { walletId: new mongoose.Types.ObjectId(walletId) });
     if (!user) {
         return false;
     }

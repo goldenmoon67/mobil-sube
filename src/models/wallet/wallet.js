@@ -31,5 +31,7 @@ function validateUser(user) {
     })
     return schema.validate(user)
 }
-module.exports.validate = validateUser;
-module.exports.Wallet = mongoose.model('Wallet', dataSchema);
+module.exports = {
+    Wallet: mongoose.model('Wallet', dataSchema),
+    validateWallet: validateUser // You might need to rename this function to reflect it's for Wallet
+};

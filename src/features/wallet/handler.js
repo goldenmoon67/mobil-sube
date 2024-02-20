@@ -30,7 +30,7 @@ exports.createWallet = async () => {
 exports.connectWalletForUser = async (_id,ownerId) => {
     const wallet = await Wallet.findByIdAndUpdate ({
         _id,
-    },{owner:new mongoose.Types.ObjectId(ownerId)});
+    },{owner: mongoose.Types.ObjectID(ownerId)});
     if (!wallet) {
         return false;
     }

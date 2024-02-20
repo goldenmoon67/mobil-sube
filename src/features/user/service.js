@@ -1,7 +1,10 @@
+const handler=require('./handler');
 
-exports.getMyWallet = async (req, res, next) => {
+
+exports.myProfile = async (req, res, next) => {
     try {
-        return res.status(201).json({ message:"My wallet"});
+      const user= await handler.findUserById(req.params.id);
+        return res.status(200).json(user);
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;
