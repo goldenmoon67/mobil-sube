@@ -2,7 +2,7 @@ const { User } = require('../../models/user/user');
 const mongoose = require('mongoose');
 
 exports.findUserById = async (_id) => {
-    const user = await User.findOne({ _id })
+    const user = await User.findOne({ _id },"_id, email name wallet transactions")
         .populate({
             path: 'wallet',
             select:
@@ -34,3 +34,4 @@ exports.addWallet = async (_id, walletId) => {
     }
     return user;
 };
+    
