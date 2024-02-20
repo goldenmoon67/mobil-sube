@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const transactionHandler = require('../transaction/handler');
 const { v4: uuidv4 } = require('uuid');
+const user = require('../../models/user/user');
 
 
 exports.findById = async (_id) => {
@@ -51,9 +52,17 @@ exports.addMoney = async (iban, owner, amount) => {
         console.log(wallet.owner)
         throw Error("User not has permission");
     }
+    const user=await userHandler.findUserById(owner);
+    if(!user){
+        throw Error("User not found");
+    }
     const response = await transactionHandler.createTransaction("addMoney", amount, null, wallet._id);
     wallet.balance = wallet.balance + amount;
+    wallet.transactions.push(response._id);
+    user.transactions.push(response._id);
     await wallet.save();
+    await user.save();
+    
     return response;
 };
 
@@ -80,7 +89,12 @@ exports.transfer = async (owner, iban, amount) => {
     const response = await transactionHandler.createTransaction("transfer", amount, currentWallet.id, targetWallet._id);
     targetWallet.balance = targetWallet.balance + amount;
     currentWallet.balance = currentWallet.balance - amount;
+    targetWallet.transactions.push(response._id);
+    currentWallet.transactions.push(response._id);
     await targetWallet.save();
     await currentWallet.save();
+    user.transactions.push(response._id);
+    await user.save();
+
     return response;
 };
