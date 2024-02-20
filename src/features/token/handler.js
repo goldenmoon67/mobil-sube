@@ -31,11 +31,20 @@ exports.verifyRefreshToken = async (refreshToken) => {
     if (!userToken){
         throw Error("invalid token");
     }
-   const tokenDetails= jwt.verify(refreshToken,process.env.REFRESH_TOKEN_PRIVATE_KEY);
+
+   const tokenDetails=  jwt.verify(refreshToken,process.env.REFRESH_TOKEN_PRIVATE_KEY);
+
     if(!tokenDetails){
         throw Error("invalid token");
     }   
     return tokenDetails;
 };
+exports.verifyToken = async (token) => {
+   const tokenDetails=  jwt.verify(token,process.env.ACCESS_TOKEN_PRIVATE_KEY);
 
+    if(!tokenDetails){
+        throw Error("invalid token");
+    }   
+    return tokenDetails;
+};
 

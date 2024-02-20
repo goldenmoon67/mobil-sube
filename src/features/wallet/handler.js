@@ -48,8 +48,6 @@ exports.addMoney = async (iban, owner, amount) => {
         throw Error("Wallet not found");
     }
     if (wallet.owner != owner) {
-        console.log(owner);
-        console.log(wallet.owner)
         throw Error("User not has permission");
     }
     const user=await userHandler.findUserById(owner);
@@ -67,7 +65,6 @@ exports.addMoney = async (iban, owner, amount) => {
 };
 
 exports.transfer = async (owner, iban, amount) => {
-    console.log(iban);
     const targetWallet = await Wallet.findOne({
         iban:iban
     },);
@@ -78,7 +75,6 @@ exports.transfer = async (owner, iban, amount) => {
     if (!user) {
         throw Error("User not found");
     }
-    console.log(user)
     const currentWallet=await this.findById(user.wallet);
     if(!currentWallet){
         throw Error("Wallet not found");

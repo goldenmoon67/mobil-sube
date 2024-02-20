@@ -9,7 +9,6 @@ const bcrypt = require('bcrypt')
 
 
 exports.createUser = async (email, password, userName) => {
-    console.log(password);
     const wallet = await walletHandler.createWallet()
     const data = new User({
         email: email,
