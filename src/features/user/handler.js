@@ -28,7 +28,7 @@ exports.findUserByEmail = async (email) => {
 exports.addWallet = async (_id, walletId) => {
     const user = await User.findByIdAndUpdate({
         _id,
-    }, { walletId: new mongoose.Types.ObjectId(walletId) });
+    }, { wallet: walletId });
     if (!user) {
         return false;
     }

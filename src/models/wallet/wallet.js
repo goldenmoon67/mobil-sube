@@ -33,5 +33,5 @@ function validateUser(user) {
 }
 module.exports = {
     Wallet: mongoose.model('Wallet', dataSchema),
-    validateWallet: validateUser // You might need to rename this function to reflect it's for Wallet
+    validateWallet: validateUser 
 };

@@ -10,10 +10,10 @@ exports.createUser = async (email, password,userName) => {
         email: email,
         password:password,
         name:userName,
-        walletId:wallet.id,
+        wallet:wallet.id,
     });
     const saveResponse = await data.save();
-    walletHandler.connectWalletForUser(wallet.id,saveResponse._id);
+      await  walletHandler.connectWalletForUser(wallet.id,saveResponse._id);
     return saveResponse;
 };
 
