@@ -34,4 +34,3 @@ exports.addWallet = async (_id, walletId) => {
     }
     return user;
 };
-    

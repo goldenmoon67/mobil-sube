@@ -3,21 +3,14 @@ const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema({
 
 
-    name: {
-        required: true,
-        type: String
-    },
     email: {
         required: true,
         type: String
     },
-    password: {
-        type: String,
+    otpCode: {
         required: true,
-        min: 8,
-        max: 100
-
-    },
+        type: String
+    }
    
 });
 function validateUser(user) {
@@ -31,4 +24,4 @@ function validateUser(user) {
 
 module.exports.validate = validateUser
 
-module.exports.User = mongoose.model('RegisterModel', dataSchema)
+module.exports = mongoose.model('RegisterModel', dataSchema)

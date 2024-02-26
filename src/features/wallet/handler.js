@@ -53,7 +53,7 @@ exports.addMoney = async (iban, owner, amount) => {
     const user=await userHandler.findUserById(owner);
     if(!user){
         throw Error("User not found");
-    }
+    }   
     const response = await transactionHandler.createTransaction("addMoney", amount, null, wallet._id);
     wallet.balance = wallet.balance + amount;
     wallet.transactions.push(response._id);

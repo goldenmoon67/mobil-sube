@@ -3,7 +3,6 @@ const Joi = require('@hapi/joi');
 
 const dataSchema = new mongoose.Schema({
     name: {
-        required: true,
         type: String,
     },
     email: {
@@ -18,7 +17,6 @@ const dataSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Wallet'
     },
-
     transactions: [{
         type: mongoose.Types.ObjectId,
         ref: 'Transaction'
