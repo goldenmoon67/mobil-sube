@@ -9,6 +9,7 @@ const dataSchema = new mongoose.Schema({
     operationType:{
         required: true,
         type: String,
+        enum: ['addMoney', 'transfer'], 
     },
     to: {
         type: String,
