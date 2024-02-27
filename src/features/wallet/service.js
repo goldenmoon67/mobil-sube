@@ -30,3 +30,19 @@ exports.transfer = async  (req, res,next) => {
         next(err);
     }
 };
+
+exports.details = async  (req, res,next) => {
+    try {
+        const id = req.params.id;
+        const response= await handler.findById(id);
+        if(!response){
+            throw Error("Wallet not found");
+        }
+        res.status(201).json(response);
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
