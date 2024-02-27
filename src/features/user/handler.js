@@ -34,3 +34,15 @@ exports.addWallet = async (_id, walletId) => {
     }
     return user;
 };
+
+
+exports.updateUserName = async (_id, name) => {
+    const user = await User.findByIdAndUpdate({
+        _id,
+    }, { name: name });
+    if (!user) {
+        return false;
+    }
+    return user;
+};
+
